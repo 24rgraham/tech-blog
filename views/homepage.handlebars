@@ -1,0 +1,11 @@
+<h3 class="text-center page-title pt-4 pb-3">New Posts</h3>
+
+<div class="container">
+
+    <div class="row justify-content-center row-cols-1 row-cols-md-3 row-cols-lg-4" id="event-details">
+
+        {{#each posts}}
+        {{> post-details }}
+        {{/each}}
+    </div>
+</div>

@@ -35,7 +35,44 @@ router.post('/', async (req,res) => {
 })
 
 //update post by id
+router.put('/:id', (req,res)=>{
+  Post.update({
+    title: req.body.title,
+    content: req.body.content,
+  },
+  {
+    where: {
+      id: req.params.id
+    }
+  })
+  .then((updatedEvent) => {
+    if (updatedEvent[0] === 0) {
+      return res.status(404).json({ msg: "no event found" });
+    }
+    res.json(updatedEvent)
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(500).json({ err: err });
+  });
+})
 
 //delete post by id
+router.delete('/:id', async (req, res) => {
+  try {
+    const event = await Post.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+
+    if(!event) {
+      return res.status(400).json({message: "No post"})
+    }
+    res.status(200).json(event)
+  } catch (err) {
+    console.log(err)
+  }
+});
 
 module.exports = router;

@@ -7,7 +7,7 @@ This web application allows for users to communicate with each other through pos
 
 ## Deployed Link
 
-
+https://tech-talk-social.herokuapp.com/
  
 ## Table of Contents 
  - [Usage](#usage) 

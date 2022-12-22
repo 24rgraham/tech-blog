@@ -2,6 +2,8 @@
     <div id="card" class="card p-2 m-2 col-md-6 col-12">
         <h1 class="text-center text-capitalize">{{post.title}}</h1>
         <p id="post-id" style="display:none">{{post.id}}</p>
+        <p id="postUserId" style="display:none">{{post.User.id}}</p>
+        <p id="UserId" style="display:none">{{UserId}}</p>
 
     <br />
 
@@ -13,7 +15,10 @@
       <li class="card-text">{{moment post.createdAt format="dddd, MMMM Do YYYY"}}</li>
             <br>
             <button type="button" id='commentbtn' class="btn btn-primary" data-toggle="modal" data-target="#commentModal">Add a comment</button>
-            <br> <br>
+            <br><br>
+            <button type="button" id='updatebtn' class="btn btn-warning" style="display:none">Update Post</button>
+            <button type="button" id='deletebtn' class="btn btn-danger" style="display:none">Delete Post</button>
+            <br><br>
             <li class="card-text" id="comments">Comments:</li>
         </ul>
     </div>

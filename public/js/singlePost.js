@@ -1,4 +1,42 @@
 const PostId = document.getElementById('post-id').textContent;
+const UserId = document.getElementById('UserId').textContent;
+const postUserId = document.getElementById('postUserId').textContent;
+
+if (UserId == postUserId) {
+    console.log('matchy');
+    document.getElementById('updatebtn').setAttribute('style','display:inline')
+    document.getElementById('deletebtn').setAttribute('style','display:inline')
+}
+
+document.getElementById('deletebtn').addEventListener("click", e => {
+    e.preventDefault();    
+        fetch(`/api/posts/${PostId}`, {
+            method: "DELETE",
+        }).then(res => {
+            if (res.ok) {
+                location.href='/';
+            } else {
+                alert("failed")
+                location.reload();
+            }
+        })
+})
+
+document.getElementById('updatebtn').addEventListener("click", e => {
+    e.preventDefault();
+    location.href=`/update-post/${PostId}`;    
+        // fetch(`/api/posts/${PostId}`, {
+        //     method: "DELETE",
+        // }).then(res => {
+        //     if (res.ok) {
+        //         location.href='/';
+        //     } else {
+        //         alert("failed")
+        //         location.reload();
+        //     }
+        // })
+})
+
 
 
 // display comments

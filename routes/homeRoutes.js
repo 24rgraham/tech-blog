@@ -6,7 +6,7 @@ router.get("/", async (req, res) => {
   // Shows all posts
   try {
     const postData = await Post.findAll({
-      include: [User,Comment],
+      include: [User, Comment],
     });
 
     // serialize
@@ -40,7 +40,7 @@ router.get("/posts/:id", async (req, res) => {
       res.render("single-post", {
         post,
         loggedIn: req.session.loggedIn,
-        userId: req.session.userId,
+        UserId: req.session.UserId,
         sessId: req.sessionID,
       });
     } else {
@@ -50,6 +50,34 @@ router.get("/posts/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+//Update single post
+// router.get("/update-post/:id", async (req, res) => {
+//   try {
+//     if (!req.session.loggedIn) {
+//       return res.redirect(`/`);
+//     }
+//     //   User.findByPk(req.session.UserId).then((foundUser) => {
+//     //     if (!foundUser) {
+//     //       return res.redirect("/404");
+//     //     }
+//     // });
+//     const post = await Post.findByPk({
+//       where: {
+//         id: req.params.id,
+//       },
+//     })
+
+//     // const hbsUser = foundUser.toJSON();
+//     res.render("updatePost", {
+//       post: post,
+//       UserId: req.session.UserId,
+//     });
+
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 router.get("/login", (req, res) => {
   // login
@@ -98,6 +126,23 @@ router.get("/new-post", (req, res) => {
     res.render("newPost", {
       hbsUser: hbsUser,
       loggedIn: req.session.loggedIn,
+      UserId: req.session.UserId,
+    });
+  });
+});
+
+// update post
+router.get("/update-post/:id", (req, res) => {
+  if (!req.session.loggedIn) {
+    return res.redirect(`/`);
+  }
+  Post.findByPk(req.params.id).then((foundPost) => {
+    if (!foundPost) {
+      return res.redirect("/404");
+    }
+    const post = foundPost.toJSON();
+    res.render("updatePost", {
+      post: post,
       UserId: req.session.UserId,
     });
   });

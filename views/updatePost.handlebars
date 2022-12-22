@@ -1,0 +1,21 @@
+<div id="card" class="card p-3 m-3" id="event-details">
+    <div class="card-header form-title text-center text-lg">
+        <h2> Update Post</h2>
+    </div>
+    <form class="card-body" id="new-event-form">
+        <div class="form-group">
+            <label for="post-title" class="form-label">Post Title</label>
+            <input name="post-title" class="form-control" type="text" id="post-title" value="{{post.title}}">
+        </div>
+        <div class="form-group">
+            <label for="post-body" class="form-label">Write a new post</label>
+            <textarea name="post-body" class="form-control" rows="3">{{post.content}}</textarea>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Post it!</button>
+    </form>
+</div>
+
+<p id="postId" style="display:none">{{post.id}}</p>
+
+<script src="/js/updatePost.js"></script>
